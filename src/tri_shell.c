@@ -1,8 +1,6 @@
-#include "tri_Shell.h"
-#include <stdio.h>
-#include <stdlib.h>
+#include <tri_shell.h>
 
-void shell_sort(int * arr, int n) {
+void tri_shell(int * arr, int n) {
     
     for (int gap = n/2; gap > 0; gap /= 2) {
 
