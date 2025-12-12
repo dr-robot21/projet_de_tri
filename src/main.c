@@ -16,8 +16,9 @@
 
 
 
-void mesure_temps() {
+void mesure_temps(void (*tri)(int*,int),char *fichier) {
     int *tab , k = 0;
+
     double results[RSLT_SIZE];
     
     for (int n = 1000; n <= MAX_SIZE; n += 1000)
@@ -29,8 +30,7 @@ void mesure_temps() {
 
         // votre algorithme de tri
         // n le nombre des element de tab
-        tri_shell(tab,n);
-
+        tri(tab,n);
         // le temps apres le tri
         clock_t fin = clock();
 
@@ -47,7 +47,7 @@ void mesure_temps() {
     printf("last recorde : %f \n",results[RSLT_SIZE - 1]);
 
     // cree un fichier binaire contient les mesures
-    cree_fichierDouble("data/tri_shell.bin",results,RSLT_SIZE);
+    cree_fichierDouble(fichier,results,RSLT_SIZE);
 }
 
 void represGraph(const char **nomsTri, double **donnesTri, int nbCourbes, int taille) {
@@ -114,6 +114,20 @@ void represGraph(const char **nomsTri, double **donnesTri, int nbCourbes, int ta
 
 int main(int argc, char const *argv[])
 {
+
+    
+    // Mesurez le temps d'exécution de tous les algorithmes de tri
+    // enregistrez-les dans un fichier.
+
+    mesure_temps(tri_rapide,"data/tri_rapide.bin");
+    mesure_temps(tri_fusion,"data/tri_fusion.bin");
+    mesure_temps(tri_tas,"data/tri_tas.bin");
+    mesure_temps(tri_bulle,"data/tri_bulle.bin");
+    mesure_temps(tri_insertion,"data/tri_insertion.bin");
+    mesure_temps(tri_selection,"data/tri_selection.bin");
+    mesure_temps(tri_shell,"data/tri_shell.bin");
+
+
 
     // charges les mesures depuis les fichiers
     double *tri_rapide_mesures = lire_fichierDouble("data/tri_rapide.bin",RSLT_SIZE);

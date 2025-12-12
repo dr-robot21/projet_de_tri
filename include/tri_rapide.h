@@ -6,7 +6,8 @@
 
 
 int partition(int *arr, int gauche, int droit);
-void tri_rapide(int *arr, int gauche, int droit);
+void triRapide(int *arr, int gauche, int droit);
+void tri_rapide(int *arr, int n);
 
 
 #endif // TRI_RAPIDE_H

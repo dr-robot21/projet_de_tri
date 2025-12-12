@@ -39,17 +39,21 @@ void fusion(int *arr, int gauche, int mid, int droit) {
     free(R);
 }
 
-void tri_fusion(int *arr, int gauche, int droit) { 
+void triFusion(int *arr, int gauche, int droit) { 
     if(gauche < droit) {
 
         // calculer le millieu de tableau
         int mid = (gauche + droit)/2;
 
         // decomposer le tableau
-        tri_fusion(arr,gauche,mid);
-        tri_fusion(arr,mid+1,droit);
+        triFusion(arr,gauche,mid);
+        triFusion(arr,mid+1,droit);
 
         // fusionner le tableau
         fusion(arr,gauche,mid,droit);
     }
+}
+
+void tri_fusion(int *arr, int n) {
+    triFusion(arr,0,n);
 }

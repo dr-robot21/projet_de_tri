@@ -21,13 +21,17 @@ int partition(int *arr, int gauche, int droit) {
 }
 
 
-void tri_rapide(int *arr, int gouch, int droit) {
+void triRapide(int *arr, int gouch, int droit) {
     if(gouch < droit){
         // Partitionner le tableau et obtenir la position du pivot
         int pivot = partition(arr,gouch,droit);
 
         // Trier récursivement les sous-tableaux à gauche et à droit du pivot
-        tri_rapide(arr,gouch,pivot - 1);
-        tri_rapide(arr,pivot + 1,droit);
+        triRapide(arr,gouch,pivot - 1);
+        triRapide(arr,pivot + 1,droit);
     }
+}
+
+void tri_rapide(int *arr ,int n) {
+    triRapide(arr, 0 , n - 1);
 }
